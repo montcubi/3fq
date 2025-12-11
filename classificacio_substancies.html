@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquema de Substàncies Químiques (Per Imprimir)</title>
+    <style>
+        :root {
+            --border-color: #000;
+            --header-bg: #eee;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif; /* Més estàndard per imprimir */
+            color: #000;
+            background: #fff;
+            max-width: 210mm; /* Amplada A4 aproximada */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 24px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Estructura Principal */
+        .schema-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dues columnes iguals */
+            gap: 20px;
+            border: 2px solid #000;
+        }
+
+        /* Capçaleres de les Columnes */
+        .col-header {
+            background-color: var(--header-bg);
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .col-network { border-right: 1px solid #000; }
+        
+        /* Cel·les i contingut */
+        .substance-box {
+            border-bottom: 1px solid #000;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 80px 1fr; /* Espai per dibuix + text */
+            gap: 15px;
+            page-break-inside: avoid; /* Evita que es talli a mitges en imprimir */
+        }
+
+        .substance-box:last-child {
+            border-bottom: none;
+        }
+
+        /* Dibuixos simplificats per imprimir */
+        .img-box {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Textos */
+        h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+
+        .type-tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        p {
+            margin: 3px 0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Botó d'imprimir (només pantalla) */
+        .no-print {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover { background: #555; }
+
+        /* Ajustos per a la columna de la dreta per omplir l'espai */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Canviat per alinear a dalt */
+        }
+
+        .spacer {
+            flex-grow: 1;
+            background: #fafafa;
+            border-top: 1px solid #000;
+            padding: 15px;
+            font-style: italic;
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Estils específics d'impressió */
+        @media print {
+            .no-print { display: none; }
+            body { padding: 0; margin: 0; }
+            .schema-container { border: 2px solid #000; }
+            .col-header { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button onclick="window.print()">🖨️ Imprimir Esquema</button>
+        <p><small>Utilitza paper A4 vertical o horitzontal</small></p>
+    </div>
+
+    <h1>Classificació de Substàncies segons l'Enllaç</h1>
+
+    <div class="schema-container">
+        
+        <!-- COLUMNA ESQUERRA: XARXES -->
+        <div style="border-right: 2px solid #000;">
+            <div class="col-header">
+                XARXES TRIDIMENSIONALS (GEGANTS)<br>
+                <small style="font-weight:normal; font-size:12px;">(Nombre indefinit d'àtoms)</small>
+            </div>
+
+            <!-- Iòniques -->
+            <div class="substance-box">
+                <div class="img-box">
+                    <svg viewBox="0 0 80 80">
+                        <!-- Pattern -->
+                        <rect x="10" y="10" width="20" height="20" fill="#fff" stroke="#000" stroke-width="2"/>
+                        <text x="20" y="25" font-size="14" text-anchor="middle">+</text>
+                        <rect x="30" y="10" width="20" height="20" fill="#ddd" stroke="#000" stroke-width="2"/>
+                        <text x="40" y="25" font-size="14" text-anchor="middle">-</text>
+                        <rect x="50" y="10" width="20" height="20" fill="#fff" stroke="#000" stroke-width="2"/>
+                        <text x="60" y="25" font-size="14" text-anchor="middle">+</text>
+                        
+                        <rect x="10" y="30" width="20" height="20" fill="#ddd" stroke="#000" stroke-width="2"/>
+                        <text x="20" y="45" font-size="14" text-anchor="middle">-</text>
+                        <rect x="30" y="30" width="20" height="20" fill="#fff" stroke="#000" stroke-width="2"/>
+                        <text x="40" y="45" font-size="14" text-anchor="middle">+</text>
+                        <rect x="50" y="30" width="20" height="20" fill="#ddd" stroke="#000" stroke-width="2"/>
+                        <text x="60" y="45" font-size="14" text-anchor="middle">-</text>
+                    </svg>
+                </div>
+                <div>
+                    <span class="type-tag">Enllaç Iònic (Metall + No Metall)</span>
+                    <h3>Iòniques</h3>
+                    <p><strong>Estructura:</strong> Xarxa cristal·lina de cations (+) i anions (-) alternats.</p>
+                    <p><strong>Propietats:</strong> Durs, fràgils, alts punts de fusió. Solubles en aigua. No condueixen sòlids, sí fosos.</p>
+                    <p><em>Ex: NaCl (Sal), CaCl₂</em></p>
+                </div>
+            </div>
+
+            <!-- Metàl·liques -->
+            <div class="substance-box">
+                <div class="img-box">
+                    <svg viewBox="0 0 80 80">
+                         <circle cx="20" cy="20" r="8" fill="#ccc" stroke="#000"/>
+                         <circle cx="40" cy="20" r="8" fill="#ccc" stroke="#000"/>
+                         <circle cx="60" cy="20" r="8" fill="#ccc" stroke="#000"/>
+                         <circle cx="20" cy="40" r="8" fill="#ccc" stroke="#000"/>
+                         <circle cx="40" cy="40" r="8" fill="#ccc" stroke="#000"/>
+                         <circle cx="60" cy="40" r="8" fill="#ccc" stroke="#000"/>
+                         <text x="40" y="65" font-size="8" text-anchor="middle">e- lliures</text>
+                         <circle cx="30" cy="30" r="1" fill="#000" />
+                         <circle cx="50" cy="30" r="1" fill="#000" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="type-tag">Enllaç Metàl·lic (Metall)</span>
+                    <h3>Metàl·liques</h3>
+                    <p><strong>Estructura:</strong> Cations positius fixos en un núvol d'electrons mòbils.</p>
+                    <p><strong>Propietats:</strong> Conductors elèctrics/tèrmics, brillants, dúctils i mal·leables.</p>
+                    <p><em>Ex: Ferro (Fe), Coure (Cu)</em></p>
+                </div>
+            </div>
+
+            <!-- Cov. Atòmiques -->
+            <div class="substance-box">
+                <div class="img-box">
+                    <svg viewBox="0 0 80 80">
+                        <line x1="40" y1="10" x2="20" y2="40" stroke="#000" stroke-width="2"/>
+                        <line x1="40" y1="10" x2="60" y2="40" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="40" x2="10" y2="70" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="40" x2="30" y2="70" stroke="#000" stroke-width="2"/>
+                        <line x1="60" y1="40" x2="50" y2="70" stroke="#000" stroke-width="2"/>
+                        <line x1="60" y1="40" x2="70" y2="70" stroke="#000" stroke-width="2"/>
+                        <circle cx="40" cy="10" r="4" fill="#000"/>
+                        <circle cx="20" cy="40" r="4" fill="#000"/>
+                        <circle cx="60" cy="40" r="4" fill="#000"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="type-tag">Enllaç Covalent (No Metalls C, Si)</span>
+                    <h3>Covalents Atòmiques</h3>
+                    <p><strong>Estructura:</strong> Macromolècula gegant. Àtoms units fortament en totes direccions.</p>
+                    <p><strong>Propietats:</strong> Molt durs, punts de fusió màxims (>2000ºC). No conductors.</p>
+                    <p><em>Ex: Diamant (C), Sílice (SiO₂)</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DRETA: MOLÈCULES -->
+        <div class="right-column">
+            <div class="col-header">
+                MOLÈCULES DISCRETES<br>
+                <small style="font-weight:normal; font-size:12px;">(Nombre fix d'àtoms)</small>
+            </div>
+
+            <!-- Cov. Moleculars -->
+            <div class="substance-box">
+                <div class="img-box">
+                    <svg viewBox="0 0 80 80">
+                        <!-- Molècula 1 -->
+                        <circle cx="20" cy="20" r="6" fill="#000"/>
+                        <circle cx="30" cy="25" r="4" fill="#fff" stroke="#000"/>
+                        
+                        <!-- Molècula 2 -->
+                        <circle cx="60" cy="50" r="6" fill="#000"/>
+                        <circle cx="70" cy="55" r="4" fill="#fff" stroke="#000"/>
+
+                        <!-- Forces febles -->
+                        <line x1="30" y1="30" x2="55" y2="45" stroke="#999" stroke-dasharray="2,2" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="type-tag">Enllaç Covalent (No Metalls)</span>
+                    <h3>Covalents Moleculars</h3>
+                    <p><strong>Estructura:</strong> Grups aïllats (molècules). Àtoms units fort dins la molècula, però les molècules s'uneixen entre elles feblement.</p>
+                    <p><strong>Propietats:</strong> Gasos, líquids o sòlids tous. Punts de fusió/ebullició baixos. Mals conductors.</p>
+                    <p><em>Ex: Aigua (H₂O), Oxigen (O₂), CO₂</em></p>
+                </div>
+            </div>
+
+            <div class="spacer">
+                Aquestes substàncies NO formen xarxes gegants.<br>
+                Són les úniques que tenen fórmules "reals" (H₂O vol dir exactament 2 H i 1 O).<br>
+                A les xarxes (esquerra), la fórmula és només una proporció.
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
